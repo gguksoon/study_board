@@ -11,10 +11,6 @@ public class ContextPathInitListener implements ServletContextListener{
 	public void contextInitialized(ServletContextEvent sce) {
 		ServletContext sc = sce.getServletContext();
 		sc.setAttribute("cp", sc.getContextPath());
-		
-//		sc.setAttribute("S_USERVO_LIST", new ArrayList<User>());
-		
-//		logger.debug("contextPathInitListener ==> cp: {}", sc.getAttribute("cp"));
 	}
 
 	// application객체가 소멸될 때 호출

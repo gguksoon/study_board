@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>꺽순시스템</title>
+  <title>STUDY_BOARD</title>
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
 
@@ -28,12 +28,25 @@
   <link href="${cp }/Flattern/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="${cp }/Flattern/assets/vendor/aos/aos.css" rel="stylesheet">
   
+  <!-- fontawesome 5.13.0 -->
+  <link href="${cp }/fontawesome-free-5.13.0-web/css/all.min.css" rel="stylesheet">
+  
   <!-- Board CSS -->
   <link href="${cp }/css/board.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
   <link href="${cp }/Flattern/assets/css/style.css" rel="stylesheet">
 
+  <!-- jQuery -->
+  <script src="${cp }/js/jquery-3.4.1.min.js"></script>
+  
+  <!-- moment -->
+  <script src="${cp }/js/moment.min.js"></script>
+  
+  <!-- sweetalert2 -->
+  <link href="${cp }/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+  <script src="${cp }/sweetalert2/dist/sweetalert2.min.js"></script>
+  
   <!-- =======================================================
   * Template Name: Flattern - v2.0.0
   * Template URL: https://bootstrapmade.com/flattern-multipurpose-bootstrap-template/
@@ -55,7 +68,7 @@
   </header><!-- End Header -->
   
   <!-- ======= Hero ======= -->
-  <section id="hero">
+  <section id="hero" style="display: none;"> <!-- 막아둠 -->
     <tiles:insertAttribute name="hero"/>
   </section>
   
@@ -66,50 +79,6 @@
   <footer id="footer">
 	<tiles:insertAttribute name="footer"/>
   </footer><!-- End Footer -->
-
-<!-- Login Modal -->
-<div class="bootstrap-modal">
-    <div class="modal fade" id="loginModal">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="calendarModalTitle">로그인</h3>
-                </div>
-                <div class="modal-body basic-form">
-                	<form id="calendarForm">
-                		<input type="hidden" name="cal_id" id="cal_id"/>
-                		<input type="hidden" name="depart_id" value="${S_EMPLOYEE.depart_id }"/>
-                		<input type="hidden" name="emp_id" value="${S_EMPLOYEE.emp_id }"/>
-                		
-                		<div class="form-group row">
-		                    <label class="col-sm-3 col-form-label">아이디</label>
-		                    <div class="col-sm-9">
-		                    	<input type="text" class="form-control" id="cal_title" name="cal_title">
-		                    </div>
-	                    </div>
-	                    <div class="form-group row">
-		                    <label class="col-sm-3 col-form-label">비밀번호</label>
-		                    <div class="col-sm-9">
-		                    	<input type="text" class="form-control" id="cal_title" name="cal_title">
-		                    </div>
-	                    </div>
-	                    
-	                    <div class="form-group row">
-		                    <label class="col-sm-3 col-form-label">하루 종일</label>
-		                    <div class="col-sm-9">
-	                    		<input id="allDay" name="allDay" type="checkbox" style="margin-top: 10px;">
-		                    </div>
-	                    </div>
-                    </form>
-                </div>
-                    <button type="button" class="btn mb-1 btn-dark" data-dismiss="modal" style="float: right;">취소</button>
-                    <button type="button" class="btn mb-1 btn-dark" id="btnUpdateCalendar" style="float: right;">수정</button>
-                    <button type="button" class="btn mb-1 btn-dark" id="btnInsertCalendar" style="float: right;">생성</button>
-                    <button type="button" class="btn mb-1 btn-danger" id="btnDeleteCalendar" style="float: left;">삭제</button>
-            </div>
-        </div>
-    </div>
-</div> <!-- End Login Modal -->
 
   <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
@@ -127,7 +96,7 @@
 
   <!-- Template Main JS File -->
   <script src="${cp }/Flattern/assets/js/main.js"></script>
-
+  
 </body>
 
 </html>

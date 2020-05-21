@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V14</title>
+	<title>로그인</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -28,53 +28,9 @@
 	<link rel="stylesheet" type="text/css" href="${cp }/login/css/util.css">
 	<link rel="stylesheet" type="text/css" href="${cp }/login/css/main.css">
 <!--===============================================================================================-->
-
-<script src="${cp }/js/js.cookie.js"></script> <!-- cookie -->
-<script src="${cp }/js/jquery-3.4.1.min.js"></script> <!-- jquery -->
-
-<script>
-	$(function() {
-		
-		// 쿠키에 있는 userId를 불러온다.
-		var userId = Cookies.get('userId');
-		if(userId != null) {
-			$("#userId").val(userId);
-			$("#ckb1").prop('checked', true);
-			$('#pass').focus();
-		}
-		
-		// signin btn 클릭 이벤트 핸들러
-		$('#signinBtn').on('click', function() {
-			// remember me check box가 체크가 되었는가?
-
-			// 체크 되었으면
-			if($('#ckb1').prop('checked')) {
-				// userId 쿠키를 생성하고 값은 userId input의 값을 쿠기 값으로 설정
-				Cookies.set("userId", $("#userId").val(), {expires : 30});
-			// 체크 안되었으면
-			} else {
-				// 기존에 사용자가 아이디를 쿠키에 저장하는 기능을 사용하다가 더 이상 사용하지 않는 경우
-				// 처음부터 아이디 쿠키 저장 기능을 사용하지 않는 경우
-				// ==> userId 쿠키를 삭제
-				Cookies.remove("userId");
-			}
-			
-			// 로그인 요청(현재 button으로 되있으므로 submit해준다.)
-			$("#frm").submit();
-		})
-		
-		$("#userId, #pass").keydown(function(key) {
-			if (key.keyCode == 13) {
-				$("#frm").submit();
-			}
-		});
-		
-	});
-</script>
-
 </head>
+
 <body>
-	
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
@@ -82,15 +38,13 @@
 					<span class="login100-form-title p-b-32">
 						Account Login
 					</span>
-
 					<span class="txt1 p-b-11">
 						UserId
 					</span>
 					<div class="wrap-input100 validate-input m-b-36" data-validate = "UserId is required">
-						<input class="input100" type="text" name="userId" id="userId">
+						<input class="input100" type="text" name="mem_id" id="mem_id">
 						<span class="focus-input100"></span>
 					</div>
-					
 					<span class="txt1 p-b-11">
 						Password
 					</span>
@@ -98,37 +52,31 @@
 						<span class="btn-show-pass">
 							<i class="fa fa-eye"></i>
 						</span>
-						<input class="input100" type="password" name="pass" id="pass">
+						<input class="input100" type="password" name="mem_pass" id="mem_pass">
 						<span class="focus-input100"></span>
 					</div>
-					
 					<div class="flex-sb-m w-full p-b-48">
 						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="rememberMe">
-							<label class="label-checkbox100" for="ckb1">
+							<input class="input-checkbox100" id="ckb_rm" type="checkbox" name="ckb_rm">
+							<label class="label-checkbox100" for="ckb_rm">
 								Remember me
 							</label>
 						</div>
-
 						<div>
-							<a href="#" class="txt3">
-								Forgot Password?
-							</a>
+<!-- 							<a href="#" class="txt3"> -->
+<!-- 								Forgot Password? -->
+<!-- 							</a> -->
 						</div>
 					</div>
-
 					<div class="container-login100-form-btn">
 						<button type="button" class="login100-form-btn" id="signinBtn">
 							Login
 						</button>
 					</div>
-
 				</form>
 			</div>
 		</div>
 	</div>
-	
-
 	<div id="dropDownSelect1"></div>
 	
 <!--===============================================================================================-->
@@ -147,6 +95,52 @@
 	<script src="${cp }/login/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="${cp }/login/js/main.js"></script>
+	
+<script src="${cp }/js/js.cookie.js"></script> <!-- cookie -->
+<script src="${cp }/js/jquery-3.4.1.min.js"></script> <!-- jquery -->
 
+<script>
+	function login() {
+		// remember me check box가 체크가 되었는가?
+
+		// 체크 되었으면
+		if($("#ckb_rm").prop("checked")) {
+			// userId 쿠키를 생성하고 값은 userId input의 값을 쿠기 값으로 설정
+			Cookies.set("mem_id", $("#mem_id").val(), {expires : 30});
+		// 체크 안되었으면
+		} else {
+			// 기존에 사용자가 아이디를 쿠키에 저장하는 기능을 사용하다가 더 이상 사용하지 않는 경우
+			// 처음부터 아이디 쿠키 저장 기능을 사용하지 않는 경우
+			// ==> userId 쿠키를 삭제
+			Cookies.remove("mem_id");
+		}
+		
+		// 로그인 요청(현재 button으로 되있으므로 submit해준다.)
+		$("#frm").submit();
+	}
+	
+	$(function() {
+		// 쿠키에 있는 mem_id를 불러온다.
+		var mem_id = Cookies.get("mem_id");
+		if(mem_id != null) {
+			$("#mem_id").val(mem_id);
+			$("#ckb_rm").prop("checked", true);
+			$("#mem_pass").focus();
+		}
+		
+		// signin btn 클릭 이벤트 핸들러
+		$("#signinBtn").on("click", function() {
+			login();
+		});
+		
+		// mem_id와 mem_pass칸에서 enter시 전송
+		$("#mem_id, #mem_pass").keydown(function(key) {
+			if (key.keyCode == 13) {
+				login();
+			}
+		});
+		
+	});
+</script>
 </body>
 </html>

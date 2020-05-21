@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
 	
-	<!-- memId에 해당하는 member객체 반환 -->
+	<!-- mem_id에 해당하는 Member객체 반환 -->
 	<select id="getMember" parameterType="String" resultType="member">
 		select *
 		  from member

@@ -14,16 +14,16 @@ public class MemberService implements IMemberService {
 	private IMemberDao memberDao;
 	
 	/**
-	* Method : getMemId
+	* Method : getMember
 	* 작성자 : JO MIN SOO
 	* 변경이력 :
-	* @param memId
+	* @param mem_id
 	* @return
-	* Method 설명 : memId에 해당하는 member객체 반환
+	* Method 설명 : mem_id에 해당하는 Member객체 반환
 	*/
 	@Override
-	public Member getMember(String memId) {
-		return memberDao.getMember(memId);
+	public Member getMember(String mem_id) {
+		return memberDao.getMember(mem_id);
 	}
 
 }

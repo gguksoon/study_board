@@ -11,10 +11,10 @@ public class Reply {
 	private Date reply_reg;
 	private Date reply_mod;
 	private int reply_stat;
-	private int par_reply_seq;
+	private Integer par_reply_seq;
 	
 	public Reply(int reply_seq, int post_seq, String mem_id, String reply_cont, Date reply_reg, Date reply_mod,
-			int reply_stat, int par_reply_seq) {
+			int reply_stat, Integer par_reply_seq) {
 		this.reply_seq = reply_seq;
 		this.post_seq = post_seq;
 		this.mem_id = mem_id;
@@ -67,10 +67,10 @@ public class Reply {
 	public void setReply_stat(int reply_stat) {
 		this.reply_stat = reply_stat;
 	}
-	public int getPar_reply_seq() {
+	public Integer getPar_reply_seq() {
 		return par_reply_seq;
 	}
-	public void setPar_reply_seq(int par_reply_seq) {
+	public void setPar_reply_seq(Integer par_reply_seq) {
 		this.par_reply_seq = par_reply_seq;
 	}
 

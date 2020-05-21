@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="post">
+
+	<!-- post_seq에 해당하는 Post객체 반환 -->
+	<select id="getPost" parameterType="int" resultType="post">
+		select *
+		  from post
+		 where post_seq = #{post_seq}
+	</select>
+
+	<!-- board_seq에 해당하는 모든 Post객체를 List<Post>로 반환 -->
+	<select id="getPostList" parameterType="int" resultType="post">
+		select *
+		  from post
+		 where board_seq = #{board_seq}
+		   and post_stat = 1
+		 order by post_seq desc
+	</select>
+
+	<!-- board_seq에 해당하는 Post의 갯수를 반환 -->
+	<select id="getPostTotalCnt" parameterType="int" resultType="int">
+		select count(*)
+		  from post
+		 where board_seq = #{board_seq}
+		   and post_stat = 1
+	</select>
+	
+	<!-- 이전글의 post 객체 반환 -->
+	<select id="getBeforePost" parameterType="int" resultType="post">
+		select *
+		  from post
+		 where post_seq = (select max(a.post_seq)
+							 from (select post_seq
+									 from post
+									where post_seq &lt; #{post_seq}
+									  and board_seq = (select board_seq
+														 from post
+														where post_seq = #{post_seq})
+									  and post_stat = 1) a)
+	</select>
+	
+	<!-- 다음글의 post 객체 반환 -->
+	<select id="getAfterPost" parameterType="int" resultType="post">
+		select *
+		  from post
+		 where post_seq = (select min(a.post_seq)
+							 from (select post_seq
+									 from post
+									where post_seq > #{post_seq}
+									  and board_seq = (select board_seq
+														 from post
+														where post_seq = #{post_seq})
+									  and post_stat = 1) a)
+	</select>
+
+	<!-- insertPost -->
+	<insert id="insertPost" parameterType="post">
+		insert into post(post_seq, board_seq, post_title, post_cont, mem_id,
+							post_reg, post_mod, post_stat, post_gn, par_post_seq)
+		values(get_seq('post_seq'), #{board_seq}, #{post_title}, #{post_cont},
+					#{mem_id}, now(), null, 1, 0, null)
+		<selectKey resultType="int" keyProperty="post_seq" order="AFTER">
+			select max(post_seq) as post_seq from post
+		</selectKey>
+	</insert>
+
+	<!-- updatePost -->
+	<update id="updatePost" parameterType="post">
+		update post
+		   set post_title = #{post_title},
+		       post_cont = #{post_cont},
+		       post_mod = now()
+		 where post_seq = #{post_seq}
+	</update>
+
+	<!-- deletePost -->
+	<delete id="deletePost" parameterType="int">
+		update post
+		   set post_stat = 0
+		 where post_seq = #{post_seq}
+	</delete>
+
+</mapper>

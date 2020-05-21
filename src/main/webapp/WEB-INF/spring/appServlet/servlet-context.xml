@@ -22,6 +22,21 @@
 	<!-- 스프링이 처리하지 못하는 요청에 대해서 was(servlet-container)에 있는 default servlet으로 
 		처리 위임 -->
 	<mvc:default-servlet-handler />
+	
+	<!-- interceptor -->
+	<!-- mvc:mapping: 적용할 대상 -->
+	<!-- mvc:exclude-mapping: 제외할 대상 -->
+	<!-- bean: interceptor 설정이 담긴 클래스 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**/"/>
+			<mvc:exclude-mapping path="/css/**"/>
+			<mvc:exclude-mapping path="/Flattern/**"/>
+			<mvc:exclude-mapping path="/js/**"/>
+			<mvc:exclude-mapping path="/login/**"/>
+			<bean class="kr.letech.interceptor.LoginCheckInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 	<!-- Tiles 뷰 리졸버 -->
 	<bean id="tielsViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
@@ -55,13 +70,16 @@
 		<!-- ex) prefix + viewName(index) + suffix ==> /WEB-INF/views/(index).jsp -->
 		<!-- ==> index를 요청하면 /WEB-INF/views/index.jsp가 요청됨 -->
 	</bean>
+	
+	<!-- jsonView(controller에서 json데이터를 넘기기 위한 빈) -->
+	<bean name="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
 
 	<!-- multipartResolver -->
-	<!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> -->
-	<!-- <property name="maxUploadSize" value="5242880"/> 5MB -->
-	<!-- <property name="maxUploadSizePerFile" value="26214400"/> 25MB -->
-	<!-- </bean> -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="5242880"/> <!-- 5MB -->
+		<property name="maxUploadSizePerFile" value="26214400"/> <!-- 25MB -->
+	</bean>
 
 	<!-- fileDownloadView -->
-	<!-- <bean name="fileDownloadView" class="kr.or.ddit.util.FileDownloadView"/> -->
+	<bean name="fileDownloadView" class="kr.letech.util.FileDownloadView"/>
 </beans>

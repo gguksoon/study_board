@@ -1,7 +1,6 @@
 package kr.letech.member.web;
 
 import javax.annotation.Resource;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.letech.board.service.IBoardService;
 import kr.letech.member.model.Member;
 import kr.letech.member.service.IMemberService;
 
@@ -19,6 +19,9 @@ public class MemberController {
 
 	@Resource(name = "memberService")
 	private IMemberService memberService;
+	
+	@Resource(name = "boardService")
+	private IBoardService boardService;
 	
 	/**
 	* Method : view
@@ -29,10 +32,7 @@ public class MemberController {
 	*/
 	@GetMapping("login") 
 	public String loginView() {
-//		return "login/login";
-		Member member = memberService.getMember("admin");
-		System.out.println(member.toString());
-		return "tiles/./index";
+		return "login/login";
 	}
 	
 	/**
@@ -51,30 +51,18 @@ public class MemberController {
 	public String loginProcess(String mem_id, String mem_pass, String rememberMe,
 								HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		
-		manageMemIdCookie(response, mem_id, rememberMe);
-
 		Member member = memberService.getMember(mem_id);
 		
-		if(member == null) {
-			return "login/login";
-		} else if(mem_pass != null && mem_pass.equals(member.getMem_pass())) {
+		if(mem_pass != null && mem_pass.equals(member.getMem_pass())) {
 			// session에 member정보 넣기
-			session.setAttribute("S_MEMBERVO", member);
-
-			return "redirect:/main";
+			session.setAttribute("S_MEM", member);
+			// session에 boardList 넣기
+			session.setAttribute("S_BOARDLIST", boardService.getBoardList());
+			
+			return "redirect:/";
 		} else {
-			return "login/login";
+			return "login";
 		}
-	}
-	
-	private void manageMemIdCookie(HttpServletResponse response, String mem_id, String rememberMe) {
-		// rememberMe 파라미터가 존재할 경우 memId를 cookie로 생성
-		Cookie cookie = new Cookie("mem_id", mem_id);
-		if(rememberMe != null)
-			cookie.setMaxAge(60 * 60 * 24 * 30); // second
-		else 
-			cookie.setMaxAge(0);
-		response.addCookie(cookie);
 	}
 	
 	/**

@@ -7,6 +7,10 @@
 	
 	<typeAliases>
 		<typeAlias alias="member" type="kr.letech.member.model.Member"/>
+		<typeAlias alias="board" type="kr.letech.board.model.Board"/>
+		<typeAlias alias="post" type="kr.letech.post.model.Post"/>
+		<typeAlias alias="postFile" type="kr.letech.postFile.model.PostFile"/>
+		<typeAlias alias="reply" type="kr.letech.reply.model.Reply"/>
 	</typeAliases>
 	
 	<environments default="development">
@@ -20,9 +24,5 @@
 			</dataSource>
 		</environment>
 	</environments>
-	
-<!-- 	<mappers> -->
-<!-- 		<mapper resource="kr/letech/mybatis/mapper/member.xml" /> -->
-<!-- 	</mappers> -->
 	
 </configuration>

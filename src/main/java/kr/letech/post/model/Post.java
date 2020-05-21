@@ -6,20 +6,20 @@ public class Post {
 
 	private int post_seq;
 	private int board_seq;
-	private String post_nm;
+	private String post_title;
 	private String post_cont;
 	private String mem_id;
 	private Date post_reg;
 	private Date post_mod;
 	private int post_stat;
 	private int post_gn;
-	private int par_post_seq;
+	private Integer par_post_seq;
 	
-	public Post(int post_seq, int board_seq, String post_nm, String post_cont, String mem_id, Date post_reg,
-			Date post_mod, int post_stat, int post_gn, int par_post_seq) {
+	public Post(int post_seq, int board_seq, String post_title, String post_cont, String mem_id, Date post_reg,
+			Date post_mod, int post_stat, int post_gn, Integer par_post_seq) {
 		this.post_seq = post_seq;
 		this.board_seq = board_seq;
-		this.post_nm = post_nm;
+		this.post_title = post_title;
 		this.post_cont = post_cont;
 		this.mem_id = mem_id;
 		this.post_reg = post_reg;
@@ -41,11 +41,11 @@ public class Post {
 	public void setBoard_seq(int board_seq) {
 		this.board_seq = board_seq;
 	}
-	public String getPost_nm() {
-		return post_nm;
+	public String getPost_title() {
+		return post_title;
 	}
-	public void setPost_nm(String post_nm) {
-		this.post_nm = post_nm;
+	public void setPost_title(String post_title) {
+		this.post_title = post_title;
 	}
 	public String getPost_cont() {
 		return post_cont;
@@ -83,7 +83,7 @@ public class Post {
 	public void setPost_gn(int post_gn) {
 		this.post_gn = post_gn;
 	}
-	public int getPar_post_seq() {
+	public Integer getPar_post_seq() {
 		return par_post_seq;
 	}
 	public void setPar_post_seq(int par_post_seq) {
@@ -92,9 +92,9 @@ public class Post {
 
 	@Override
 	public String toString() {
-		return "Post [post_seq=" + post_seq + ", board_seq=" + board_seq + ", post_nm=" + post_nm + ", post_cont="
+		return "Post [post_seq=" + post_seq + ", board_seq=" + board_seq + ", post_title=" + post_title + ", post_cont="
 				+ post_cont + ", mem_id=" + mem_id + ", post_reg=" + post_reg + ", post_mod=" + post_mod
 				+ ", post_stat=" + post_stat + ", post_gn=" + post_gn + ", par_post_seq=" + par_post_seq + "]";
 	}
-	
+
 }

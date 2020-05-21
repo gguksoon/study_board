@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+	
+	<!-- board_seq에 해당하는 Board객체 반환  -->
+	<select id="getBoard" parameterType="int" resultType="board">
+		select *
+		  from board
+		 where board_seq = #{board_seq}
+	</select>
+	
+	<!-- 모든 board객체를 List<Board>로 반환 -->
+	<select id="getBoardList" resultType="board">
+		select *
+		  from board
+		 order by board_seq
+	</select>
+	
+	<insert id="insertBoard" parameterType="board">
+		insert into board(board_seq, board_name, mem_id, board_loc, board_stat, board_write)
+		values(get_seq('board_seq'), #{board_name}, #{mem_id}, #{board_loc}, #{board_stat}, #{board_write})
+	</insert>
+	
+	<update id="updateBoard" parameterType="board">
+		update board
+		   set board_name = #{board_name},
+		       mem_id = #{mem_id},
+		       board_loc = #{board_loc},
+		       board_stat = #{board_stat},
+		       board_write = #{board_write}
+		 where board_seq = #{board_seq}
+	</update>
+	
+	<update id="updateBoardStat" parameterType="int">
+		update board
+		   set board_stat = 1
+		 where board_seq = #{board_seq}
+	</update>
+</mapper>
