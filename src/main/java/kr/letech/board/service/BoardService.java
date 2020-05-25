@@ -6,7 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import kr.letech.board.model.Board;
+import kr.letech.board.model.BoardVo;
 import kr.letech.board.repository.IBoardDao;
 
 @Service
@@ -24,7 +24,7 @@ public class BoardService implements IBoardService {
 	* Method 설명 : board_seq에 해당하는 Board객체 반환 
 	*/
 	@Override
-	public Board getBoard(int board_seq) {
+	public BoardVo getBoard(int board_seq) {
 		return boardDao.getBoard(board_seq);
 	}
 
@@ -36,7 +36,7 @@ public class BoardService implements IBoardService {
 	* Method 설명 : 모든 board객체를 List<Board>로 반환 
 	*/
 	@Override
-	public List<Board> getBoardList() {
+	public List<BoardVo> getBoardList() {
 		return boardDao.getBoardList();
 	}
 
@@ -49,7 +49,7 @@ public class BoardService implements IBoardService {
 	* Method 설명 : insert board
 	*/
 	@Override
-	public int insertBoard(Board board) {
+	public int insertBoard(BoardVo board) {
 		return boardDao.insertBoard(board);
 	}
 	
@@ -62,7 +62,7 @@ public class BoardService implements IBoardService {
 	* Method 설명 : update board 
 	*/
 	@Override
-	public int updateBoard(Board board) {
+	public int updateBoard(BoardVo board) {
 		return boardDao.updateBoard(board);
 	}
 

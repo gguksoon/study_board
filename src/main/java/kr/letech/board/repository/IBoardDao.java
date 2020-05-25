@@ -2,7 +2,7 @@ package kr.letech.board.repository;
 
 import java.util.List;
 
-import kr.letech.board.model.Board;
+import kr.letech.board.model.BoardVo;
 
 public interface IBoardDao {
 
@@ -14,7 +14,7 @@ public interface IBoardDao {
 	* @return
 	* Method 설명 : board_seq에 해당하는 Board객체 반환 
 	*/
-	Board getBoard(int board_seq);
+	BoardVo getBoard(int board_seq);
 	
 	/**
 	* Method : getBoardList
@@ -23,7 +23,7 @@ public interface IBoardDao {
 	* @return
 	* Method 설명 : 모든 board객체를 List<Board>로 반환 
 	*/
-	List<Board> getBoardList();
+	List<BoardVo> getBoardList();
 
 	/**
 	* Method : insertBoard
@@ -33,7 +33,7 @@ public interface IBoardDao {
 	* @return
 	* Method 설명 : insert board
 	*/
-	int insertBoard(Board board);
+	int insertBoard(BoardVo board);
 	
 	/**
 	* Method : updateBoard
@@ -43,7 +43,7 @@ public interface IBoardDao {
 	* @return
 	* Method 설명 : update board 
 	*/
-	int updateBoard(Board board);
+	int updateBoard(BoardVo board);
 	
 	/**
 	* Method : updateBoardStat

@@ -1,6 +1,6 @@
 package kr.letech.board.model;
 
-public class Board {
+public class BoardVo {
 
 	private int board_seq;
 	private String board_name;
@@ -9,9 +9,9 @@ public class Board {
 	private int board_stat;
 	private int board_write;
 	
-	public Board() { }
+	public BoardVo() { }
 	
-	public Board(int board_seq, String board_name, String mem_id, int board_loc, int board_stat, int board_write) {
+	public BoardVo(int board_seq, String board_name, String mem_id, int board_loc, int board_stat, int board_write) {
 		this.board_seq = board_seq;
 		this.board_name = board_name;
 		this.mem_id = mem_id;

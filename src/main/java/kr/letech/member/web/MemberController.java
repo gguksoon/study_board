@@ -32,6 +32,7 @@ public class MemberController {
 	*/
 	@GetMapping("login") 
 	public String loginView() {
+		System.out.println("dd");
 		return "login/login";
 	}
 	

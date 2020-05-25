@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.View;
 
-import kr.letech.board.model.Board;
+import kr.letech.board.model.BoardVo;
 import kr.letech.board.service.IBoardService;
 
 /**
@@ -66,7 +66,7 @@ public class BoardController {
 	* Method 설명 : insert board
 	*/
 	@PostMapping("insertBoard")
-	public View insertBoard(HttpSession session, @ModelAttribute Board board) {
+	public View insertBoard(HttpSession session, @ModelAttribute BoardVo board) {
 		// 게시판 추가
 		boardService.insertBoard(board);
 		
@@ -86,7 +86,7 @@ public class BoardController {
 	* Method 설명 : update board
 	*/
 	@PostMapping("updateBoard")
-	public View updateBoard(HttpSession session, @ModelAttribute Board board) {
+	public View updateBoard(HttpSession session, @ModelAttribute BoardVo board) {
 		// 게시판 수정
 		boardService.updateBoard(board);
 		

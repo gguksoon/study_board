@@ -116,6 +116,7 @@
 		}
 		
 		// 로그인 요청(현재 button으로 되있으므로 submit해준다.)
+		alert("ㅎㅎ");
 		$("#frm").submit();
 	}
 	

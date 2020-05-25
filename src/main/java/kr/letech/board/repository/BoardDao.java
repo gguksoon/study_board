@@ -7,7 +7,7 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import kr.letech.board.model.Board;
+import kr.letech.board.model.BoardVo;
 
 @Repository
 public class BoardDao implements IBoardDao {
@@ -24,7 +24,7 @@ public class BoardDao implements IBoardDao {
 	* Method 설명 : board_seq에 해당하는 Board객체 반환 
 	*/
 	@Override
-	public Board getBoard(int board_seq) {
+	public BoardVo getBoard(int board_seq) {
 		return sqlSession.selectOne("board.getBoard", board_seq);
 	}
 	
@@ -36,7 +36,7 @@ public class BoardDao implements IBoardDao {
 	* Method 설명 : 모든 board객체를 List<Board>로 반환 
 	*/
 	@Override
-	public List<Board> getBoardList() {
+	public List<BoardVo> getBoardList() {
 		return sqlSession.selectList("board.getBoardList");
 	}
 
@@ -49,7 +49,7 @@ public class BoardDao implements IBoardDao {
 	* Method 설명 : insert board
 	*/
 	@Override
-	public int insertBoard(Board board) {
+	public int insertBoard(BoardVo board) {
 		return sqlSession.insert("board.insertBoard", board);
 	}
 	
@@ -62,7 +62,7 @@ public class BoardDao implements IBoardDao {
 	* Method 설명 : update board 
 	*/
 	@Override
-	public int updateBoard(Board board) {
+	public int updateBoard(BoardVo board) {
 		return sqlSession.update("board.updateBoard", board);
 	}
 

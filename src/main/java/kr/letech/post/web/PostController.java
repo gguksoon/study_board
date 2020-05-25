@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.letech.board.model.Board;
+import kr.letech.board.model.BoardVo;
 import kr.letech.board.service.IBoardService;
 import kr.letech.post.model.Post;
 import kr.letech.post.service.IPostService;
@@ -51,7 +51,7 @@ public class PostController {
 	@RequestMapping("postList/{board_seq}/{page}")
 	public String boardView(Model model, @PathVariable int board_seq, @PathVariable Integer page) {
 		// 1. board_seq를 이용해 Board객체 불러오기
-		Board board = boardService.getBoard(board_seq);
+		BoardVo board = boardService.getBoard(board_seq);
 		// view로 Board객체 보내기
 		model.addAttribute("board", board);
 		
